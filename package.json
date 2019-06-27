@@ -1,0 +1,14 @@
+{
+  "name": "ray-tracer",
+  "version": "1.0.0",
+  "description": "Monty's imlpementation of the Ray Tracer Challenge",
+  "main": "main.js",
+  "author": "Montgomery Anderson <montgomery@boost.co.nz>",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^5.0.6"
+  }
+}
