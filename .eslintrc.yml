@@ -1,0 +1,37 @@
+---
+env:
+  browser: true
+  es6: true
+  jquery: true
+  node: true
+extends:
+  - eslint:recommended
+parserOptions:
+  sourceType: module
+globals:
+  _: true
+  "$": true
+  ga: true
+  Foundation: true
+rules:
+  indent:
+  - error
+  - 2
+  linebreak-style:
+  - error
+  - unix
+  quotes:
+  - error
+  - single
+  semi:
+  - error
+  - never
+  no-unused-vars:
+  - error
+  - varsIgnorePattern: '_.*'
+    argsIgnorePattern: '_.*'
+  no-console:
+  - warn
+  comma-dangle: 
+  - error
+  - always-multiline

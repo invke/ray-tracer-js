@@ -7,10 +7,12 @@
   "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "test": "jest"
+    "test": "jest",
+    "lint": "yarn eslint --fix --color './app/javascript/**.js' './*.js'"
   },
   "devDependencies": {
     "electron-prebuilt-compile": "^4.0.0",
+    "eslint": "^6.0.1",
     "jest": "^24.8.0"
   }
 }
