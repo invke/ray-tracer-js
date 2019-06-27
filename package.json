@@ -6,9 +6,11 @@
   "author": "Montgomery Anderson <montgomery@boost.co.nz>",
   "license": "MIT",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "test": "jest"
   },
   "devDependencies": {
-    "electron-prebuilt-compile": "^4.0.0"
+    "electron-prebuilt-compile": "^4.0.0",
+    "jest": "^24.8.0"
   }
 }
