@@ -47,133 +47,179 @@ describe('Tuple', () => {
   })
 
   describe('#equals', () => {
+    let result
+    beforeEach(() => tuple = new Tuple(4.3, -4.2, 3.1, 1.0))
+
     it('returns true if the x, y, z and are both points', () => {
-      expect(
-        (new Tuple(4.3, -4.2, 3.1, 1.0)).equals(new Tuple(4.3, -4.2, 3.1, 1.0))
-      ).toBe(true)
+      result = tuple.equals(new Tuple(4.3, -4.2, 3.1, 1.0))
+      expect(result).toBe(true)
     })
 
     it('returns false if the x, y, z are equal but one is a point the other a vector', () => {
-      expect(
-        (new Tuple(4.3, -4.2, 3.1, 1.0)).equals(new Tuple(4.3, -4.2, 3.1, 0.0))
-      ).toBe(false)
+      result = tuple.equals(new Tuple(4.3, -4.2, 3.1, 0.0))
+      expect(result).toBe(false)
     })
   })
 
   describe('#add', () => {
+    let result
+    beforeEach(() => {
+      tuple = new Tuple(3, -2, 5, 1)
+      result = tuple.add(new Tuple(-2, 3, 1, 0))
+    })
+
     it('returns a tuple from the addition of their components', () => {
-      const result = (new Tuple(3, -2, 5, 1)).add(new Tuple(-2, 3, 1, 0))
       expect(result.x).toEqual(1)
       expect(result.y).toEqual(1)
       expect(result.z).toEqual(6)
       expect(result.w).toEqual(1)
     })
   })
-  
+
   describe('#subtract', () => {
+    let result
+
     describe('subtracting two points', () => {
       beforeEach(() => {
-        tuple = Tuple.Point(3, 2, 1).subtract(Tuple.Point(5, 6, 7))
+        tuple = Tuple.Point(3, 2, 1)
+        result = tuple.subtract(Tuple.Point(5, 6, 7))
       })
-  
+
       it('returns a vector', () => {
-        expect(tuple.isVector).toBe(true)
+        expect(result.isVector).toBe(true)
       })
-      
+
       it('subtracts components pairwise', () => {
-        expect(tuple.x).toEqual(-2)
-        expect(tuple.y).toEqual(-4)
-        expect(tuple.z).toEqual(-6)
+        expect(result.x).toEqual(-2)
+        expect(result.y).toEqual(-4)
+        expect(result.z).toEqual(-6)
       })
     })
-  
+
     describe('subtracting a vector from a point', () => {
       beforeEach(() => {
-        tuple = Tuple.Point(3, 2, 1).subtract(Tuple.Vector(5, 6, 7))
+        tuple = Tuple.Point(3, 2, 1)
+        result = tuple.subtract(Tuple.Vector(5, 6, 7))
       })
-  
+
       it('returns a point', () => {
-        expect(tuple.isPoint).toBe(true)
+        expect(result.isPoint).toBe(true)
       })
-  
+
       it('subtracts components pairwise', () => {
-        expect(tuple.x).toEqual(-2)
-        expect(tuple.y).toEqual(-4)
-        expect(tuple.z).toEqual(-6)
+        expect(result.x).toEqual(-2)
+        expect(result.y).toEqual(-4)
+        expect(result.z).toEqual(-6)
       })
     })
 
     describe('subtracting two vectors', () => {
       beforeEach(() => {
-        tuple = Tuple.Vector(3, 2, 1).subtract(Tuple.Vector(5, 6, 7))
+        tuple = Tuple.Vector(3, 2, 1)
+        result = tuple.subtract(Tuple.Vector(5, 6, 7))
       })
 
       it('returns a vector', () => {
-        expect(tuple.isVector).toBe(true)
+        expect(result.isVector).toBe(true)
       })
 
       it('subtracts components pairwise', () => {
-        expect(tuple.x).toEqual(-2)
-        expect(tuple.y).toEqual(-4)
-        expect(tuple.z).toEqual(-6)
+        expect(result.x).toEqual(-2)
+        expect(result.y).toEqual(-4)
+        expect(result.z).toEqual(-6)
       })
     })
 
     describe('subtracting a vector from the zero vector', () => {
       beforeEach(() => {
-        tuple = Tuple.ZeroVector().subtract(Tuple.Point(1, -2, 3))
+        tuple = Tuple.Point(1, -2, 3)
+        result = Tuple.ZeroVector().subtract(tuple)
       })
 
       it('returns a vector', () => {
-        expect(tuple.isVector).toBe(true)
+        expect(result.isVector).toBe(true)
       })
 
       it('inverts the sign of the components', () => {
-        expect(tuple.x).toEqual(-1)
-        expect(tuple.y).toEqual(2)
-        expect(tuple.z).toEqual(-3)
+        expect(result.x).toEqual(-1)
+        expect(result.y).toEqual(2)
+        expect(result.z).toEqual(-3)
       })
     })
   })
 
   describe('#negate', () => {
+    let result
+
     beforeEach(() => {
-      tuple = (new Tuple(1, -2, 3, -4)).negate()
+      tuple = new Tuple(1, -2, 3, -4)
+      result = tuple.negate()
     })
 
     it('inverts the sign of the components', () => {
-      expect(tuple.x).toEqual(-1)
-      expect(tuple.y).toEqual(2)
-      expect(tuple.z).toEqual(-3)
-      expect(tuple.w).toEqual(4)
+      expect(result.x).toEqual(-1)
+      expect(result.y).toEqual(2)
+      expect(result.z).toEqual(-3)
+      expect(result.w).toEqual(4)
     })
   })
 
   describe('#mutliply', () => {
+    let result
+
     describe('multiplying a tuple by a scalar', () => {
       beforeEach(() => {
-        tuple = (new Tuple(1, -2, 3, -4)).multiply(3.5)
+        tuple = new Tuple(1, -2, 3, -4)
+        result = tuple.multiply(3.5)
       })
 
       it('multiplys the tuple components piecewise', () => {
-        expect(tuple.x).toEqual(3.5)
-        expect(tuple.y).toEqual(-7)
-        expect(tuple.z).toEqual(10.5)
-        expect(tuple.w).toEqual(-14)
+        expect(result.x).toEqual(3.5)
+        expect(result.y).toEqual(-7)
+        expect(result.z).toEqual(10.5)
+        expect(result.w).toEqual(-14)
       })
     })
 
     describe('multilying a tuple by a fraction', () => {
       beforeEach(() => {
-        tuple = (new Tuple(1, -2, 3, -4)).multiply(0.5)
+        tuple = new Tuple(1, -2, 3, -4)
+        result = tuple.multiply(0.5)
       })
 
       it('multiplys the tuple components piecewise', () => {
-        expect(tuple.x).toEqual(0.5)
-        expect(tuple.y).toEqual(-1)
-        expect(tuple.z).toEqual(1.5)
-        expect(tuple.w).toEqual(-2)
+        expect(result.x).toEqual(0.5)
+        expect(result.y).toEqual(-1)
+        expect(result.z).toEqual(1.5)
+        expect(result.w).toEqual(-2)
       })
+    })
+  })
+
+  describe('#magnitude', () => {
+    it('returns 1 with components (1, 0, 0)', () => {
+      tuple = Tuple.Vector(1, 0, 0)
+      expect(tuple.magnitude).toEqual(1)
+    })
+    
+    it('returns 1 with components (0, 1, 0)', () => {
+      tuple = Tuple.Vector(0, 1, 0)
+      expect(tuple.magnitude).toEqual(1)
+    })
+
+    it('returns 1 with components (0, 0, 1)', () => {
+      tuple = Tuple.Vector(0, 0, 1)
+      expect(tuple.magnitude).toEqual(1)
+    })
+
+    it('returns 1 with components (1, 2, 3)', () => {
+      tuple = Tuple.Vector(1, 2, 3)
+      expect(tuple.magnitude).toEqual(Math.sqrt(14))
+    })
+
+    it('returns 1 with components (-1, -2, -3)', () => {
+      tuple = Tuple.Vector(-1, -2, -3)
+      expect(tuple.magnitude).toEqual(Math.sqrt(14))
     })
   })
 
