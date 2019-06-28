@@ -8,20 +8,38 @@ export default class Tuple {
     this.w = w
   }
 
-  isPoint() { return this.w == 1.0 }
+  get isPoint() { return this.w == 1.0 }
 
-  isVector() { return !this.isPoint() }
+  get isVector() { return !this.isPoint }
 
   static Point(x, y, z) { return new Tuple(x, y, z, 1.0) }
 
   static Vector(x, y, z) { return new Tuple(x, y, z, 0.0) }
 
-  static AreEquivalent(oneTuple, anotherTuple) {
+  equals(anotherTuple) {
     return (
-      Math.abs(oneTuple.x - anotherTuple.x) < EPSILON &&
-      Math.abs(oneTuple.y - anotherTuple.y) < EPSILON &&
-      Math.abs(oneTuple.z - anotherTuple.z) < EPSILON &&
-      Math.abs(oneTuple.w - anotherTuple.w) < EPSILON
+      Math.abs(this.x - anotherTuple.x) < EPSILON &&
+      Math.abs(this.y - anotherTuple.y) < EPSILON &&
+      Math.abs(this.z - anotherTuple.z) < EPSILON &&
+      Math.abs(this.w - anotherTuple.w) < EPSILON
+    )
+  }
+
+  add(anotherTuple) {
+    return new Tuple(
+      this.x + anotherTuple.x,
+      this.y + anotherTuple.y,
+      this.z + anotherTuple.z,
+      this.w + anotherTuple.w
+    )
+  }
+
+  subtract(anotherTuple) {
+    return new Tuple(
+      this.x - anotherTuple.x,
+      this.y - anotherTuple.y,
+      this.z - anotherTuple.z,
+      this.w - anotherTuple.w
     )
   }
 }

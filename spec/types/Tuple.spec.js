@@ -17,11 +17,11 @@ describe('Tuple', () => {
     })
 
     it('is a point', () => {
-      expect(tuple.isPoint()).toBe(true)
+      expect(tuple.isPoint).toBe(true)
     })
 
     it('is not a vector', () => {
-      expect(tuple.isVector()).toBe(false)
+      expect(tuple.isVector).toBe(false)
     })
   })
 
@@ -38,21 +38,94 @@ describe('Tuple', () => {
     })
 
     it('is not a point', () => {
-      expect(tuple.isPoint()).toBe(false)
+      expect(tuple.isPoint).toBe(false)
     })
 
     it('is a vector', () => {
-      expect(tuple.isVector()).toBe(true)
+      expect(tuple.isVector).toBe(true)
+    })
+  })
+
+  describe('#equals', () => {
+    it('returns true if the x, y, z and are both points', () => {
+      expect(
+        (new Tuple(4.3, -4.2, 3.1, 1.0)).equals(new Tuple(4.3, -4.2, 3.1, 1.0))
+      ).toBe(true)
+    })
+
+    it('returns false if the x, y, z are equal but one is a point the other a vector', () => {
+      expect(
+        (new Tuple(4.3, -4.2, 3.1, 1.0)).equals(new Tuple(4.3, -4.2, 3.1, 0.0))
+      ).toBe(false)
+    })
+  })
+
+  describe('#add', () => {
+    it('returns a tuple from the addition of their components', () => {
+      const result = (new Tuple(3, -2, 5, 1)).add(new Tuple(-2, 3, 1, 0))
+      expect(result.x).toEqual(1)
+      expect(result.y).toEqual(1)
+      expect(result.z).toEqual(6)
+      expect(result.w).toEqual(1)
+    })
+  })
+  
+  describe('#subtract', () => {
+    describe('subtracting two points', () => {
+      beforeEach(() => {
+        tuple = Tuple.Point(3, 2, 1).subtract(Tuple.Point(5, 6, 7))
+      })
+  
+      it('returns a vector', () => {
+        expect(tuple.isVector).toBe(true)
+      })
+      
+      it('subtracts components pairwise', () => {
+        expect(tuple.x).toEqual(-2)
+        expect(tuple.y).toEqual(-4)
+        expect(tuple.z).toEqual(-6)
+      })
+    })
+  
+    describe('subtracting a vector from a point', () => {
+      beforeEach(() => {
+        tuple = Tuple.Point(3, 2, 1).subtract(Tuple.Vector(5, 6, 7))
+      })
+  
+      it('returns a point', () => {
+        expect(tuple.isPoint).toBe(true)
+      })
+  
+      it('subtracts components pairwise', () => {
+        expect(tuple.x).toEqual(-2)
+        expect(tuple.y).toEqual(-4)
+        expect(tuple.z).toEqual(-6)
+      })
+    })
+
+    describe('subtracting two vectors', () => {
+      beforeEach(() => {
+        tuple = Tuple.Vector(3, 2, 1).subtract(Tuple.Vector(5, 6, 7))
+      })
+
+      it('returns a vector', () => {
+        expect(tuple.isVector).toBe(true)
+      })
+
+      it('subtracts components pairwise', () => {
+        expect(tuple.x).toEqual(-2)
+        expect(tuple.y).toEqual(-4)
+        expect(tuple.z).toEqual(-6)
+      })
     })
   })
 
   describe('static methods', () => {
-
     describe('#Point', () => {
       beforeEach(() => tuple = Tuple.Point(4.3, -4.2, 3.1))
 
       it('returns a point tuple', () => {
-        expect(tuple.isPoint()).toBe(true)
+        expect(tuple.isPoint).toBe(true)
       })
 
       it('assigns axis\'', () => {
@@ -66,7 +139,7 @@ describe('Tuple', () => {
       beforeEach(() => tuple = Tuple.Vector(4.3, -4.2, 3.1))
 
       it('returns a vector tuple', () => {
-        expect(tuple.isVector()).toBe(true)
+        expect(tuple.isVector).toBe(true)
       })
 
       it('assigns axis\'', () => {
@@ -75,29 +148,5 @@ describe('Tuple', () => {
         expect(tuple.z).toEqual(3.1)
       })
     })
-
-    describe('#AreEquivalent', () => {
-
-      it('returns true if the x, y, z and are both points', () => {
-        expect(
-          Tuple.AreEquivalent(
-            new Tuple(4.3, -4.2, 3.1, 1.0),
-            new Tuple(4.3, -4.2, 3.1, 1.0)
-          )
-        ).toBe(true)
-      })
-
-      it('returns false if the x, y, z are equal but one is a point the other a vector', () => {
-        expect(
-          Tuple.AreEquivalent(
-            new Tuple(4.3, -4.2, 3.1, 1.0),
-            new Tuple(4.3, -4.2, 3.1, 0.0)
-          )
-        ).toBe(false)
-      })
-
-    })
-
   })
-
 })
