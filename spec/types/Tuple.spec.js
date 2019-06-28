@@ -1,5 +1,5 @@
-// const Tuple = require('app/types/Tuple')
 import Tuple from 'app/types/Tuple'
+import { EPSILON } from 'app/constants'
 
 describe('Tuple', () => {
   let tuple
@@ -201,7 +201,7 @@ describe('Tuple', () => {
       tuple = Tuple.Vector(1, 0, 0)
       expect(tuple.magnitude).toEqual(1)
     })
-    
+
     it('returns 1 with components (0, 1, 0)', () => {
       tuple = Tuple.Vector(0, 1, 0)
       expect(tuple.magnitude).toEqual(1)
@@ -220,6 +220,73 @@ describe('Tuple', () => {
     it('returns 1 with components (-1, -2, -3)', () => {
       tuple = Tuple.Vector(-1, -2, -3)
       expect(tuple.magnitude).toEqual(Math.sqrt(14))
+    })
+  })
+
+  describe('#normalize', () => {
+    let result
+
+    it('returns (1, 0, 0) with components (4, 0, 0)', () => {
+      tuple = Tuple.Vector(4, 0, 0)
+      result = tuple.normalize()
+      expect(result.x).toEqual(1)
+      expect(result.y).toEqual(0)
+      expect(result.z).toEqual(0)
+    })
+
+    it('returns (0.26726, 0.26726, 0.26726) with components (1, 2, 3)', () => {
+      tuple = Tuple.Vector(1, 2, 3)
+      result = tuple.normalize()
+      expect(Math.abs(result.x - 0.26726) < EPSILON).toBe(true)
+      expect(Math.abs(result.y - 0.53452) < EPSILON).toBe(true)
+      expect(Math.abs(result.z - 0.80178) < EPSILON).toBe(true)
+    })
+
+    it('returns a vector with magnituted 1', () => {
+      tuple = Tuple.Vector(1, 2, 3)
+      result = tuple.normalize()
+      expect(result.magnitude).toEqual(1)
+    })
+  })
+
+  describe('#dot', () => {
+    let result
+
+    describe('for two tuples (1, 2, 3) and (2, 3, 4)', () => {
+      beforeEach(() => {
+        tuple = Tuple.Vector(1, 2, 3)
+        result = tuple.dot(Tuple.Vector(2, 3, 4))
+      })
+
+      it('returns 20', () => {
+        expect(result).toEqual(20)
+      })
+    })
+  })
+
+  describe('#cross', () => {
+    let result
+    const oneTuple = Tuple.Vector(1, 2, 3)
+    const anotherTuple = Tuple.Vector(2, 3, 4)
+
+    describe('for the cross product of (1, 2, 3) with (2, 3, 4)', () => {
+      beforeEach(() => result = oneTuple.cross(anotherTuple))
+
+      it('returns (-1, 2, -1)', () => {
+        expect(result.x).toEqual(-1)
+        expect(result.y).toEqual(2)
+        expect(result.z).toEqual(-1)
+      })
+    })
+
+    describe('for the cross product of (2, 3, 4) with (1, 2, 3)', () => {
+      beforeEach(() => result = anotherTuple.cross(oneTuple))
+
+      it('returns (1, -2, 1)', () => {
+        expect(result.x).toEqual(1)
+        expect(result.y).toEqual(-2)
+        expect(result.z).toEqual(1)
+      })
     })
   })
 

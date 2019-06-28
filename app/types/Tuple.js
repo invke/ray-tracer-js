@@ -20,7 +20,8 @@ export default class Tuple {
 
   get magnitude() {
     return Math.sqrt(
-      Math.pow(this.x, 2) + Math.pow(this.y, 2) + Math.pow(this.z, 2)
+      Math.pow(this.x, 2) + Math.pow(this.y, 2) +
+      Math.pow(this.z, 2) + Math.pow(this.w, 2)
     )
   }
 
@@ -53,6 +54,32 @@ export default class Tuple {
     return new Tuple(
       this.x * scalar, this.y * scalar,
       this.z * scalar, this.w * scalar
+    )
+  }
+
+  normalize() {
+    return new Tuple(
+      this.x / this.magnitude,
+      this.y / this.magnitude,
+      this.z / this.magnitude,
+      this.w / this.magnitude,
+    )
+  }
+
+  dot(anotherTuple) {
+    return (
+      this.x * anotherTuple.x +
+      this.y * anotherTuple.y +
+      this.z * anotherTuple.z +
+      this.w * anotherTuple.w
+    )
+  }
+
+  cross(anotherTuple) {
+    return new Tuple(
+      this.y * anotherTuple.z - this.z * anotherTuple.y,
+      this.z * anotherTuple.x - this.x * anotherTuple.z,
+      this.x * anotherTuple.y - this.y * anotherTuple.x,
     )
   }
 }
