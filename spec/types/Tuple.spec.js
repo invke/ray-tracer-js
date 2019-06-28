@@ -138,7 +138,7 @@ describe('Tuple', () => {
 
   describe('#negate', () => {
     beforeEach(() => {
-      tuple = new Tuple(1, -2, 3, -4).negate()
+      tuple = (new Tuple(1, -2, 3, -4)).negate()
     })
 
     it('inverts the sign of the components', () => {
@@ -146,6 +146,34 @@ describe('Tuple', () => {
       expect(tuple.y).toEqual(2)
       expect(tuple.z).toEqual(-3)
       expect(tuple.w).toEqual(4)
+    })
+  })
+
+  describe('#mutliply', () => {
+    describe('multiplying a tuple by a scalar', () => {
+      beforeEach(() => {
+        tuple = (new Tuple(1, -2, 3, -4)).multiply(3.5)
+      })
+
+      it('multiplys the tuple components piecewise', () => {
+        expect(tuple.x).toEqual(3.5)
+        expect(tuple.y).toEqual(-7)
+        expect(tuple.z).toEqual(10.5)
+        expect(tuple.w).toEqual(-14)
+      })
+    })
+
+    describe('multilying a tuple by a fraction', () => {
+      beforeEach(() => {
+        tuple = (new Tuple(1, -2, 3, -4)).multiply(0.5)
+      })
+
+      it('multiplys the tuple components piecewise', () => {
+        expect(tuple.x).toEqual(0.5)
+        expect(tuple.y).toEqual(-1)
+        expect(tuple.z).toEqual(1.5)
+        expect(tuple.w).toEqual(-2)
+      })
     })
   })
 

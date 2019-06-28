@@ -46,4 +46,13 @@ export default class Tuple {
   }
 
   negate() { return Tuple.ZeroVector().subtract(this) }
+  
+  multiply(scalar) {
+    return new Tuple(
+      this.x * scalar,
+      this.y * scalar,
+      this.z * scalar,
+      this.w * scalar
+    )
+  }
 }
