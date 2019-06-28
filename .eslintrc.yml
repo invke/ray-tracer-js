@@ -6,6 +6,9 @@ env:
   node: true
 extends:
   - eslint:recommended
+overrides:
+  - excludedFiles:
+    '*.config.js'
 parserOptions:
   sourceType: module
 globals:

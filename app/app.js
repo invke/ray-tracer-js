@@ -1,3 +1,4 @@
-import { EPSILON } from 'app/constants'
+// import { EPSILON } from 'app/constants'
+import Tuple from 'app/types/Tuple'
 
-console.log(EPSILON)
+console.log(new Tuple(1, 2, 3, 4))
