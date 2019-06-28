@@ -1,0 +1,19 @@
+{
+  "application/javascript": {
+    "presets": [
+        "es2016-node5"
+    ],
+    "plugins": [
+        ["module-resolver", {
+            "root": ["./app"],
+            "alias": {
+              "app": "./app/app"
+            }
+        }],
+        "transform-class-properties",
+        "transform-async-to-generator",
+        "transform-runtime"
+    ],
+    "sourceMaps": "inline"
+  }
+}
