@@ -13,8 +13,10 @@ export default class Tuple {
   get isVector() { return !this.isPoint }
 
   static Point(x, y, z) { return new Tuple(x, y, z, 1.0) }
+  static ZeroPoint()    { return Tuple.Point(0, 0, 0) }
 
   static Vector(x, y, z) { return new Tuple(x, y, z, 0.0) }
+  static ZeroVector()    { return Tuple.Vector(0, 0, 0) }
 
   equals(anotherTuple) {
     return (
@@ -42,4 +44,6 @@ export default class Tuple {
       this.w - anotherTuple.w
     )
   }
+
+  negate() { return Tuple.ZeroVector().subtract(this) }
 }

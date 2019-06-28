@@ -118,6 +118,35 @@ describe('Tuple', () => {
         expect(tuple.z).toEqual(-6)
       })
     })
+
+    describe('subtracting a vector from the zero vector', () => {
+      beforeEach(() => {
+        tuple = Tuple.ZeroVector().subtract(Tuple.Point(1, -2, 3))
+      })
+
+      it('returns a vector', () => {
+        expect(tuple.isVector).toBe(true)
+      })
+
+      it('inverts the sign of the components', () => {
+        expect(tuple.x).toEqual(-1)
+        expect(tuple.y).toEqual(2)
+        expect(tuple.z).toEqual(-3)
+      })
+    })
+  })
+
+  describe('#negate', () => {
+    beforeEach(() => {
+      tuple = new Tuple(1, -2, 3, -4).negate()
+    })
+
+    it('inverts the sign of the components', () => {
+      expect(tuple.x).toEqual(-1)
+      expect(tuple.y).toEqual(2)
+      expect(tuple.z).toEqual(-3)
+      expect(tuple.w).toEqual(4)
+    })
   })
 
   describe('static methods', () => {
