@@ -3,6 +3,9 @@ import Tuple from 'app/types/Tuple'
 export default class Colour extends Tuple {
   static FromTuple(tuple) { return new Colour(tuple.x, tuple.y, tuple.z) }
 
+  static Black() { return new Colour(0, 0, 0) }
+  static White() { return new Colour(1, 1, 1) }
+
   constructor(r, g, b) {
     super(r, g, b, 0)
   }
