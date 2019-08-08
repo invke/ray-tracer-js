@@ -14,4 +14,8 @@ export default class Canvas {
       })
     })
   }
+
+  getPixel(x, y) { return this.pixels[x][y] }
+
+  setPixel(x, y, colour) { this.pixels[x][y] = colour }
 }

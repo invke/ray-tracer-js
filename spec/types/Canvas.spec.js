@@ -1,4 +1,5 @@
 import Canvas from 'app/types/Canvas'
+import Colour from 'app/types/Colour'
 
 describe('Canvas', () => {
   let canvas
@@ -27,6 +28,22 @@ describe('Canvas', () => {
           expect(pixel.blue).toEqual(0)
         })
       })
+    })
+  })
+
+  describe('#getPixel', () => {
+    it('returns the pixel at the index in the pixels array', () => {
+      canvas = new Canvas(10, 20)
+      canvas.pixels[2][3] = Colour.Red
+      expect(canvas.getPixel(2, 3)).toEqual(Colour.Red)
+    })
+  })
+
+  describe('#setPixel', () => {
+    it('sets the pixel at the index in the pixels array', () => {
+      canvas = new Canvas(10, 20)
+      canvas.setPixel(2, 3, Colour.Red)
+      expect(canvas.pixels[2][3]).toEqual(Colour.Red)
     })
   })
 })
