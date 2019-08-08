@@ -18,4 +18,8 @@ export default class Colour extends Tuple {
   add(anotherColour) {
     return Colour.FromTuple(super.add(anotherColour))
   }
+
+  subtract(anotherColour) {
+    return Colour.FromTuple(super.subtract(anotherColour))
+  }
 }
