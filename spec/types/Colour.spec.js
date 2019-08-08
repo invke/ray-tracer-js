@@ -21,31 +21,49 @@ describe('Colour', () => {
   })
 
   describe('#add', () => {
-    let result
-    beforeEach(() => {
-      colour = new Colour(0.9, 0.6, 0.75)
-      result = colour.add(new Colour(0.7, 0.1, 0.25))
-    })
-
     it('returns a colour from the addition of their components', () => {
+      const colour = new Colour(0.9, 0.6, 0.75)
+      const result = colour.add(new Colour(0.7, 0.1, 0.25))
+
       expect(result.red).toEqual(1.6)
       expect(result.green).toEqual(0.7)
       expect(result.blue).toEqual(1.0)
     })
   })
 
-  
-  describe('#subtract', () => {
-    let result
-    beforeEach(() => {
-      colour = new Colour(0.9, 0.6, 0.75)
-      result = colour.subtract(new Colour(0.7, 0.1, 0.25))
-    })
 
+  describe('#subtract', () => {
     it('returns a colour from the subtraction of their components', () => {
+      const colour = new Colour(0.9, 0.6, 0.75)
+      const result = colour.subtract(new Colour(0.7, 0.1, 0.25))
+
       expect(result.red).toApproximatelyEqual(0.2)
       expect(result.green).toApproximatelyEqual(0.5)
       expect(result.blue).toApproximatelyEqual(0.5)
+    })
+  })
+
+  describe('#multiply', () => {
+    describe('mutiplying a colour by a scalar', () => {
+      it('returns the colour with each component multiplied by the scalar', () => {
+        const colour = new Colour(0.2, 0.3, 0.4)
+        const result = colour.multiply(2)
+
+        expect(result.red).toApproximatelyEqual(0.4)
+        expect(result.green).toApproximatelyEqual(0.6)
+        expect(result.blue).toApproximatelyEqual(0.8)
+      })
+    })
+
+    describe('multiplying colours together', () => {
+      it('returns the colour from the multiplication of their components', () => {
+        const colour = new Colour(1, 0.2, 0.4)
+        const result = colour.multiply(new Colour(0.9, 1, 0.1))
+
+        expect(result.red).toApproximatelyEqual(0.9)
+        expect(result.green).toApproximatelyEqual(0.2)
+        expect(result.blue).toApproximatelyEqual(0.04)
+      })
     })
   })
 })

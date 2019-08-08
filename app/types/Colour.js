@@ -22,4 +22,25 @@ export default class Colour extends Tuple {
   subtract(anotherColour) {
     return Colour.FromTuple(super.subtract(anotherColour))
   }
+
+  multiply(scalarOrColour) {
+    if (typeof scalarOrColour === 'number')
+      return this._multiplyByScalar(scalarOrColour)
+    else
+      return this._multiplyByColour(scalarOrColour)
+  }
+
+  _multiplyByScalar(scalar) {
+    return Colour.FromTuple(super.multiply(scalar))
+  }
+
+  // Hadamard (or Schur) product.
+  // The piecewise multiplication of the two colours components.
+  _multiplyByColour(anotherColour) {
+    return new Colour(
+      this.r * anotherColour.r,
+      this.g * anotherColour.g,
+      this.b * anotherColour.b,
+    )
+  }
 }
