@@ -5,6 +5,9 @@ export default class Colour extends Tuple {
 
   static Black() { return new Colour(0, 0, 0) }
   static White() { return new Colour(1, 1, 1) }
+  static Red()   { return new Colour(1, 0, 0) }
+  static Green() { return new Colour(0, 1, 0) }
+  static Blue()  { return new Colour(0, 0, 1) }
 
   constructor(r, g, b) {
     super(r, g, b, 0)
@@ -18,14 +21,6 @@ export default class Colour extends Tuple {
   get green() { return this.g }
   get blue()  { return this.b }
 
-  add(anotherColour) {
-    return Colour.FromTuple(super.add(anotherColour))
-  }
-
-  subtract(anotherColour) {
-    return Colour.FromTuple(super.subtract(anotherColour))
-  }
-
   multiply(scalarOrColour) {
     if (typeof scalarOrColour === 'number')
       return this._multiplyByScalar(scalarOrColour)
@@ -34,7 +29,7 @@ export default class Colour extends Tuple {
   }
 
   _multiplyByScalar(scalar) {
-    return Colour.FromTuple(super.multiply(scalar))
+    return super.multiply(scalar)
   }
 
   // Hadamard (or Schur) product.

@@ -35,14 +35,14 @@ export default class Tuple {
   }
 
   add(anotherTuple) {
-    return new Tuple(
+    return new this.constructor(
       this.x + anotherTuple.x, this.y + anotherTuple.y,
       this.z + anotherTuple.z, this.w + anotherTuple.w
     )
   }
 
   subtract(anotherTuple) {
-    return new Tuple(
+    return new this.constructor(
       this.x - anotherTuple.x, this.y - anotherTuple.y,
       this.z - anotherTuple.z, this.w - anotherTuple.w
     )
@@ -51,14 +51,14 @@ export default class Tuple {
   negate() { return Tuple.ZeroVector().subtract(this) }
 
   multiply(scalar) {
-    return new Tuple(
+    return new this.constructor(
       this.x * scalar, this.y * scalar,
       this.z * scalar, this.w * scalar
     )
   }
 
   normalize() {
-    return new Tuple(
+    return new this.constructor(
       this.x / this.magnitude,
       this.y / this.magnitude,
       this.z / this.magnitude,
@@ -76,7 +76,7 @@ export default class Tuple {
   }
 
   cross(anotherTuple) {
-    return new Tuple(
+    return new this.constructor(
       this.y * anotherTuple.z - this.z * anotherTuple.y,
       this.z * anotherTuple.x - this.x * anotherTuple.z,
       this.x * anotherTuple.y - this.y * anotherTuple.x,
