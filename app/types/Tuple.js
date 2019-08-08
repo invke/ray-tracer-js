@@ -1,10 +1,10 @@
 import { EPSILON } from 'app/constants'
 
 export default class Tuple {
-  static Point(x, y, z) { return new Tuple(x, y, z, 1.0) }
+  static Point(x, y, z) { return new Tuple(x, y, z, 1) }
   static ZeroPoint()    { return Tuple.Point(0, 0, 0) }
 
-  static Vector(x, y, z) { return new Tuple(x, y, z, 0.0) }
+  static Vector(x, y, z) { return new Tuple(x, y, z, 0) }
   static ZeroVector()    { return Tuple.Vector(0, 0, 0) }
 
   constructor(x, y, z, w) {
