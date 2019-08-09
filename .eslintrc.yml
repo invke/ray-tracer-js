@@ -7,8 +7,10 @@ env:
 extends:
   - eslint:recommended
 overrides:
-  - excludedFiles:
-    '*.config.js'
+  - files:
+    - '*.js'
+    excludedFiles:
+    - '*.config.js'
 parserOptions:
   sourceType: module
 globals:
