@@ -9,6 +9,7 @@ extends:
 overrides:
   - files:
     - '*.js'
+    - '**/*.js'
     excludedFiles:
     - '*.config.js'
 parserOptions:
