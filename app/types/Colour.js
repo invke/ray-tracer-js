@@ -38,7 +38,7 @@ export default class Colour extends Tuple {
     return new Colour(
       this.r * anotherColour.r,
       this.g * anotherColour.g,
-      this.b * anotherColour.b,
+      this.b * anotherColour.b
     )
   }
 }

@@ -62,7 +62,7 @@ export default class Tuple {
       this.x / this.magnitude,
       this.y / this.magnitude,
       this.z / this.magnitude,
-      this.w / this.magnitude,
+      this.w / this.magnitude
     )
   }
 
@@ -79,7 +79,7 @@ export default class Tuple {
     return new this.constructor(
       this.y * anotherTuple.z - this.z * anotherTuple.y,
       this.z * anotherTuple.x - this.x * anotherTuple.z,
-      this.x * anotherTuple.y - this.y * anotherTuple.x,
+      this.x * anotherTuple.y - this.y * anotherTuple.x
     )
   }
 }

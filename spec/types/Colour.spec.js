@@ -1,5 +1,4 @@
 import Colour from 'app/types/Colour'
-import { EPSILON } from 'app/constants'
 
 describe('Colour', () => {
   let colour
