@@ -41,5 +41,25 @@ describe('PpmSerializer', () => {
         )
       })
     })
+
+    describe('with a wide canvas', () => {
+      beforeEach(() => {
+        const canvas = new Canvas(10, 2, new Colour(1, 0.8, 0.6))
+        serializer = new PpmSerializer(canvas)
+
+        ppmString = serializer.render()
+        const ppmLines = ppmString.split('\n')
+        ppmBody   = ppmLines.slice(3).join('\n')
+      })
+
+      it('assigns the body, splitting lines that are going to exceed 70 characters', () => {
+        expect(ppmBody).toEqual(heredoc`
+          255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204
+          153 255 204 153 255 204 153 255 204 153 255 204 153
+          255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204
+          153 255 204 153 255 204 153 255 204 153 255 204 153`
+        )
+      })
+    })
   })
 })

@@ -4,14 +4,14 @@ import Colour from 'app/types/Colour'
 import PpmSerializer from 'app/serializers/PpmSerializer'
 
 export default class Canvas {
-  constructor(width, height) {
+  constructor(width, height, fill = null) {
     this.width  = width
     this.height = height
 
     // initialize pixel grid to black
     this.pixels = _.times(width, () => {
       return _.times(height, () => {
-        return Colour.Black()
+        return fill || Colour.Black()
       })
     })
   }
