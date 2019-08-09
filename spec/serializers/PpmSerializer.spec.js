@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import heredoc from 'heredocument'
 
 import Canvas from 'app/types/Canvas'
@@ -37,8 +38,13 @@ describe('PpmSerializer', () => {
         expect(ppmBody).toEqual(heredoc`
           255 0 0 0 0 0 0 0 0 0 0 0 0 0 0
           0 0 0 0 0 0 0 128 0 0 0 0 0 0 0
-          0 0 0 0 0 0 0 0 0 0 0 0 0 0 255`
+          0 0 0 0 0 0 0 0 0 0 0 0 0 0 255
+          `
         )
+      })
+
+      it('terminates with a newline character', () => {
+        expect(_.last(ppmBody)).toEqual('\n')
       })
     })
 
@@ -57,8 +63,13 @@ describe('PpmSerializer', () => {
           255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204
           153 255 204 153 255 204 153 255 204 153 255 204 153
           255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204
-          153 255 204 153 255 204 153 255 204 153 255 204 153`
+          153 255 204 153 255 204 153 255 204 153 255 204 153
+          `
         )
+      })
+
+      it('terminates with a newline character', () => {
+        expect(_.last(ppmBody)).toEqual('\n')
       })
     })
   })

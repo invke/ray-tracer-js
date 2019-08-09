@@ -10,7 +10,7 @@ export default class PpmSerializer {
   }
 
   render() {
-    return [this._header(), this._body()].join('\n')
+    return `${this._header()}\n${this._body()}\n`
   }
 
   _header() {
